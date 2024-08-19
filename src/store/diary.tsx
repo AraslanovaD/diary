@@ -5,12 +5,12 @@ class DiaryPages {
     deadlines = [
         {
             id: 1,
-            task: 'Dragon age: the Veilguard',
+            task: 'Мероприятие 1',
             endDate: '2024-10-31'
         },
         {
             id: 2,
-            task: 'Natlan',
+            task: 'Мероприятие 1',
             endDate: '2024-08-28'
         }
     ]
@@ -19,21 +19,21 @@ class DiaryPages {
         {
             id: 1,
             date: '2024-08-13',
-            note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            note: 'Запись 2024-08-13',
             todo: [
-                { id: 1, task: '1', isCompleted: false },
-                { id: 2, task: '2', isCompleted: false },
-                { id: 3, task: '3', isCompleted: false },
+                { id: 1, task: 'Задание 1', isCompleted: false },
+                { id: 2, task: 'Задание 2', isCompleted: false },
+                { id: 3, task: 'Задание 3', isCompleted: false },
             ],
         },
         {
             id: 2,
             date: '2024-08-14',
-            note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            note: 'Запись 2024-08-14',
             todo: [
-                { id: 1, task: '5', isCompleted: false },
-                { id: 2, task: '6', isCompleted: false },
-                { id: 3, task: '7', isCompleted: false },
+                { id: 1, task: 'Задание 5', isCompleted: false },
+                { id: 2, task: 'Задание 6', isCompleted: false },
+                { id: 3, task: 'Задание 7', isCompleted: false },
             ],
         }
     ]
