@@ -19,6 +19,12 @@ const Diary = observer(() => {
         setIdPage(DiaryPages.findPageIndex(id));
     }, [id])
 
+    useEffect(()=>{
+        DiaryPages.loadDeadlines()
+        DiaryPages.loadPages()
+    },[])
+
+
     return (
         <Paper>
             <DeadlineList

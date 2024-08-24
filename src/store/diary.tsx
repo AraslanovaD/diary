@@ -1,5 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 
+const storagePages = 'diaryPages'
+const storageDeadlines = 'diaryDeadlines'
+
 class DiaryPages {
 
     deadlines = [
@@ -41,13 +44,39 @@ class DiaryPages {
     constructor() {
         makeAutoObservable(this)
     }
+
+    savePages = () => {
+        window.localStorage.setItem(storagePages, JSON.stringify(this.pages));
+    }
+
+    loadPages = () => {
+        let storage = window.localStorage.getItem(storagePages);
+        if (storage) {
+            this.pages = JSON.parse(storage);
+        }
+    }
+
+    saveDeadlines = () => {
+        window.localStorage.setItem(storageDeadlines, JSON.stringify(this.deadlines));
+    }
+
+
+    loadDeadlines = () => {
+        let storage = window.localStorage.getItem(storageDeadlines);
+        if (storage) {
+            this.deadlines = JSON.parse(storage);
+        }
+    }
+
     //pages
     addPage = (page) => {
         this.pages.push(page)
+        this.savePages()
     }
 
     deletePage = (idPage) => {
         this.pages = this.pages.filter(page => page.id !== idPage)
+        this.savePages()
     }
 
     findPageIndex = (idPage) => {
@@ -57,6 +86,7 @@ class DiaryPages {
     //pages -> note
     editNote = (idPage, newNote) => {
         this.pages = this.pages.map(page => (page.id === idPage) ? { ...page, note: newNote } : page)
+        this.savePages()
     }
 
     //rages -> todo
@@ -67,6 +97,7 @@ class DiaryPages {
             }
             return page
         })
+        this.savePages()
     }
 
     completeTodo = (idPage, idToDo) => {
@@ -77,6 +108,7 @@ class DiaryPages {
             }
             return page
         })
+        this.savePages()
     }
 
     editTodo = (idPage, idToDo, newTask) => {
@@ -87,6 +119,7 @@ class DiaryPages {
             }
             return page
         })
+        this.savePages()
     }
 
     removeTodo = (idPage, idToDo) => {
@@ -97,23 +130,28 @@ class DiaryPages {
             }
             return page
         })
+        this.savePages()
     }
 
     //deadline
     addDeadline = (newDeadline) => {
         this.deadlines.push(newDeadline)
+        this.saveDeadlines()
     }
 
     editTask = (idDeadline, newTask) => {
         this.deadlines = this.deadlines.map(deadline => (deadline.id === idDeadline) ? { ...deadline, task: newTask } : deadline)
+        this.saveDeadlines()
     }
 
     editDate = (idDeadline, newDate) => {
         this.deadlines = this.deadlines.map(deadline => (deadline.id === idDeadline) ? { ...deadline, endDate: newDate } : deadline)
+        this.saveDeadlines()
     }
 
     deleteDeadline = (idDeadline) => {
         this.deadlines = this.deadlines.filter(deadline => deadline.id !== idDeadline)
+        this.saveDeadlines()
     }
 }
 
